@@ -13,6 +13,16 @@ function onBack() {
 
 const { t } = useI18n()
 
+function hideNav() {
+  console.log('hideNav')
+
+  console.log(route.meta)
+  if (!route.meta)
+    return true
+  console.log(!route.meta.hideNav)
+  return !route.meta.hideNav
+}
+
 const title = computed(() => {
   if (!route.meta)
     return ''
@@ -25,10 +35,12 @@ const showLeftArrow = computed(() => route.name && routeWhiteList.includes(route
 
 <template>
   <VanNavBar
+    v-show="hideNav()"
     :title="title"
-    :fixed="true"
-    clickable placeholder
+    :fixed="true" clickable
+    placeholder
     :left-arrow="!showLeftArrow"
+    z-index="100"
     @click-left="onBack"
   />
 </template>

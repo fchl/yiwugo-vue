@@ -1,18 +1,18 @@
 const responseBody = {
-  message: '',
+  errorMsg: '',
   timestamp: 0,
-  result: null as unknown,
-  code: 0,
+  data: null as unknown,
+  errorCode: 0,
 }
 
 export function builder(data: unknown, message = 'success', code = 0) {
-  responseBody.result = data
+  responseBody.data = data
 
   if (message !== undefined && message !== null)
-    responseBody.message = message
+    responseBody.errorMsg = message
 
   if (code !== undefined && code !== 0)
-    responseBody.code = code
+    responseBody.errorCode = code
 
   responseBody.timestamp = new Date().getTime()
   return responseBody

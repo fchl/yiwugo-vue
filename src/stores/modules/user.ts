@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import type { LoginData, UserState } from '@/api/user'
-import { clearToken, setToken } from '@/utils/auth'
+import type { LoginData, UserInfoData } from '@/api/user'
+import { clearToken } from '@/utils/auth'
 
 import {
   getEmailCode,
@@ -18,17 +18,20 @@ const InitUserInfo = {
 }
 
 export const useUserStore = defineStore('user', () => {
-  const userInfo = ref<UserState>({ ...InitUserInfo })
+  const userInfo = ref<UserInfoData>({ ...InitUserInfo })
 
   // Set user's information
-  const setInfo = (partial: Partial<UserState>) => {
+  const setInfo = (partial: Partial<UserInfoData>) => {
     userInfo.value = { ...partial }
   }
 
+
   const login = async (loginForm: LoginData) => {
     try {
-      const { data } = await userLogin(loginForm)
-      setToken(data.token)
+      const { data, errorCode } = await userLogin(loginForm)
+      if (errorCode === 0) {
+        console.log(data.id)
+      }
     }
     catch (error) {
       clearToken()
@@ -36,10 +39,11 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const info = async () => {
+  const getInfo = async () => {
     try {
       const { data } = await getUserInfo()
-      setInfo(data)
+      console.log(data.userInfo)
+      setInfo(data.userInfo)
     }
     catch (error) {
       clearToken()
@@ -83,7 +87,7 @@ export const useUserStore = defineStore('user', () => {
 
   return {
     userInfo,
-    info,
+    getInfo,
     login,
     logout,
     getCode,

@@ -3,37 +3,55 @@ import router from '@/router'
 import { useUserStore } from '@/stores'
 import defaultAvatar from '@/assets/images/default-avatar.svg'
 
+defineOptions({
+  name: 'profile',
+})
+
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
-const isLogin = computed(() => !!userInfo.value.uid)
 
 function login() {
-  if (isLogin.value)
+  if (userInfo.value)
     return
 
   router.push({ name: 'login', query: { redirect: 'profile' } })
 }
+const active = ref(0)
 </script>
 
 <template>
   <div>
     <VanCellGroup :inset="true">
-      <van-cell center :is-link="!isLogin" @click="login">
+      <van-cell center :is-link="!userInfo" @click="login">
         <template #title>
-          <van-image :src="userInfo.avatar || defaultAvatar" round class="h-56 w-56" />
+          <van-image :src="userInfo.icon || defaultAvatar" round class="h-56 w-56" />
         </template>
 
         <template #value>
-          <span v-if="isLogin">{{ userInfo.name }}</span>
+          <span v-if="userInfo">{{ userInfo.nickname }}</span>
           <span v-else>{{ $t('profile.login') }}</span>
         </template>
       </van-cell>
     </VanCellGroup>
-
     <VanCellGroup :inset="true" class="!mt-16">
       <van-cell :title="$t('profile.settings')" icon="setting-o" is-link to="/settings" />
       <van-cell :title="$t('profile.docs')" icon="flower-o" is-link url="https://easy-temps.github.io/easy-docs/vue3-vant-mobile/" />
     </VanCellGroup>
+
+    <van-tabs v-model:active="active">
+      <van-tab title="标签 1">
+        内容 1
+      </van-tab>
+      <van-tab title="标签 2">
+        内容 2
+      </van-tab>
+      <van-tab title="标签 3">
+        内容 3
+      </van-tab>
+      <van-tab title="标签 4">
+        内容 4
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -42,7 +60,9 @@ function login() {
   name: 'profile',
   meta: {
     title: '个人中心',
-    i18n: 'menus.profile'
+    i18n: 'menus.profile',
+    keepAlive:true
   },
+
 }
 </route>

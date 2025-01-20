@@ -5,11 +5,11 @@ import useRouteCache from '@/stores/modules/routeCache'
 import useAutoThemeSwitcher from '@/hooks/useAutoThemeSwitcher'
 
 useHead({
-  title: 'Vue3 Vant Mobile',
+  title: 'Wan Vue',
   meta: [
     {
       name: 'description',
-      content: 'An mobile web apps template based on the Vue 3 ecosystem',
+      content: 'An mobile web apps wan',
     },
     {
       name: 'theme-color',
@@ -45,8 +45,13 @@ onMounted(() => {
     <router-view v-slot="{ Component, route }">
       <section class="app-wrapper">
         <keep-alive :include="keepAliveRouteNames">
-          <component :is="Component" :key="route.name" />
+          <component
+            :is="Component"
+            v-if="route.meta.keepAlive"
+            :key="route.name"
+          />
         </keep-alive>
+        <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
       </section>
     </router-view>
     <TabBar />
@@ -57,6 +62,6 @@ onMounted(() => {
 .app-wrapper {
   width: 100%;
   position: relative;
-  padding: 16px;
+  padding: 0px;
 }
 </style>

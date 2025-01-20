@@ -19,10 +19,19 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       host: true,
       port: 3000,
       proxy: {
-        '/api': {
-          target: '',
+        '/ywg': {
+          target: 'https://app.yiwugo.com/',
           ws: false,
           changeOrigin: true,
+          // 重写路径
+          rewrite: (path) => { return path.replace(/^\/ywg/, '') },
+        },
+        '/api': {
+          target: 'https://www.wanandroid.com/',
+          ws: false,
+          changeOrigin: true,
+          // 重写路径
+          rewrite: (path) => { return path.replace(/^\/api/, '') },
         },
       },
     },

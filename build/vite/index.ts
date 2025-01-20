@@ -108,6 +108,11 @@ export function createVitePlugins(mode: string) {
             type: 'image/png',
           },
           {
+            src: '/launch-page.png',
+            sizes: '1242x2208',
+            type: 'image/png',
+          },
+          {
             src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',

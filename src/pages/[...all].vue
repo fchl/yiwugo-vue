@@ -5,7 +5,7 @@ function onBack() {
   if (window.history.state.back)
     history.back()
   else
-    router.replace('/')
+    router.replace('/home')
 }
 </script>
 

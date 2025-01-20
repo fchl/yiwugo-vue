@@ -18,7 +18,9 @@ html.dark {
 #app {
   height: 100%;
   position: relative;
-  overflow-x: hidden;
+  //https://vant-ui.github.io/vant/#/zh-CN/list
+  //此属性会导致van -list   无法加载更多
+  //overflow-x: hidden; 需要移除
 }
 
 ::-webkit-scrollbar {

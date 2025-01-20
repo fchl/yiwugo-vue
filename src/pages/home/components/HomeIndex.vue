@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { getArticleList, getHomeBanner } from '@/api/wan'
-import { search } from '@/api/yiwugo'
 
- 
 const bannerList = ref([])
 async function getBanner() {
   try {
@@ -21,28 +19,28 @@ const list = ref([])
 const loading = ref(false)
 const finished = ref(false)
 
-function getSearchList() {
-  try {
-    console.log('开始加载搜索记录')
-    search(page.value, '玻璃弹珠漂亮极了').then(({ numfound, prslist }) => {
-    // console.log(`numfound = ${numfound}`)
+// function getSearchList() {
+//   try {
+//     console.log('开始加载搜索记录')
+//     search(page.value, '玻璃弹珠漂亮极了').then(({ numfound, prslist }) => {
+//     // console.log(`numfound = ${numfound}`)
 
-      list.value = list.value.concat(prslist)
-      // console.log(`pros = ${prslist.length}`)
-      // 加载状态结束
-      loading.value = false
-      if (list.value.length >= numfound) {
-        finished.value = true
-      }
-      else {
-        page.value++
-      }
-    })
-  }
-  catch (error) {
-    console.error(error)
-  }
-}
+//       list.value = list.value.concat(prslist)
+//       // console.log(`pros = ${prslist.length}`)
+//       // 加载状态结束
+//       loading.value = false
+//       if (list.value.length >= numfound) {
+//         finished.value = true
+//       }
+//       else {
+//         page.value++
+//       }
+//     })
+//   }
+//   catch (error) {
+//     console.error(error)
+//   }
+// }
 
 function getHomeList() {
   getArticleList(page.value).then(({ errorCode, data }) => {

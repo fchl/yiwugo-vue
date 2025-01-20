@@ -24,8 +24,6 @@ export const useUserStore = defineStore('user', () => {
   const setInfo = (partial: Partial<UserInfoData>) => {
     userInfo.value = { ...partial }
   }
-
-
   const login = async (loginForm: LoginData) => {
     try {
       const { data, errorCode } = await userLogin(loginForm)

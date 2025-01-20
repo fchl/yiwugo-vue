@@ -24,14 +24,11 @@ import 'vant/es/image-preview/style'
 
 const app = createApp(App)
 const head = createHead()
- 
 app.use(head)
 app.use(router)
 app.use(pinia)
 app.use(i18n)
-
 app.mount('#app')
-
 // 屏蔽 console.log打印
 // console.log = () => {}
 // console.error = () => {}

@@ -2,6 +2,7 @@
 import { getHomeBanner, getHomeTab } from '@/api/wan'
 import HomeIndex from './components/HomeIndex.vue'
 import HomeTab from './components/HomeTab.vue'
+import router from '@/router'
 
 defineOptions({
   name: 'Home',
@@ -59,10 +60,18 @@ onActivated(() => {
   console.log('组件激活时执行')
   // 放置每次激活时都需要执行的逻辑
 })
+
+function targetSearch() {
+  router.push('/search')
+}
 </script>
 
 <template>
   <div>
+    <div class="bg-white" @click="targetSearch">
+      <van-search shape="round" placeholder="请输入搜索关键词" />
+    </div>
+
     <van-tabs v-model:active="active" swipeable sticky>
       <van-tab v-for="item in tabList" :key="item.cid" :title="`${item.name}`">
         <div v-if="item.cid === 0">
@@ -72,13 +81,14 @@ onActivated(() => {
           <HomeTab :tab-list="item.articles" />
         </div>
       </van-tab>
+      <template #nav-bottom />
     </van-tabs>
   </div>
 </template>
 
 <route lang="json5">
 {
-  name: 'home',
+  name: 'Home',
   meta: {
     hideNav: true,
     title: '主页',

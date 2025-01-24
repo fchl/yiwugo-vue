@@ -26,12 +26,26 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           // 重写路径
           rewrite: (path) => { return path.replace(/^\/ywg/, '') },
         },
-        '/api': {
+        '/wan': {
           target: 'https://www.wanandroid.com/',
           ws: false,
           changeOrigin: true,
           // 重写路径
+          rewrite: (path) => { return path.replace(/^\/wan/, '') },
+        },
+        '/api': {
+          target: 'https://api.apiopen.top/api/',
+          ws: false,
+          changeOrigin: true,
+          // 重写路径
           rewrite: (path) => { return path.replace(/^\/api/, '') },
+        },
+        '/img': {
+          target: 'https://img1.yiwugo.com/',
+          ws: false,
+          changeOrigin: true,
+          // 重写路径
+          rewrite: (path) => { return path.replace(/^\/img/, '') },
         },
       },
     },

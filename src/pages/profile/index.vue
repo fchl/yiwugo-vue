@@ -39,16 +39,16 @@ const active = ref(0)
     </VanCellGroup>
 
     <van-tabs v-model:active="active">
-      <van-tab title="标签 1">
+      <van-tab title="标签 12">
         内容 1
       </van-tab>
-      <van-tab title="标签 2">
+      <van-tab title="标签 22">
         内容 2
       </van-tab>
-      <van-tab title="标签 3">
+      <van-tab title="标签 33">
         内容 3
       </van-tab>
-      <van-tab title="标签 4">
+      <van-tab title="标签 44">
         内容 4
       </van-tab>
     </van-tabs>
@@ -57,7 +57,7 @@ const active = ref(0)
 
 <route lang="json5">
 {
-  name: 'profile',
+  name: 'Profile',
   meta: {
     title: '个人中心',
     i18n: 'menus.profile',

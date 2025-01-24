@@ -41,27 +41,30 @@ onMounted(() => {
 
 <template>
   <VanConfigProvider :theme="mode">
-    <NavBar />
-    <router-view v-slot="{ Component, route }">
-      <section class="app-wrapper">
-        <keep-alive :include="keepAliveRouteNames">
-          <component
-            :is="Component"
-            v-if="route.meta.keepAlive"
-            :key="route.name"
-          />
-        </keep-alive>
-        <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
-      </section>
-    </router-view>
-    <TabBar />
+    <div class="flex flex-col">
+      <NavBar />
+
+      <router-view v-slot="{ Component, route }">
+        <section class="app-wrapper">
+          <keep-alive :include="keepAliveRouteNames">
+            <component
+              :is="Component"
+              v-if="route.meta.keepAlive"
+              :key="route.name"
+            />
+          </keep-alive>
+          <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
+        </section>
+      </router-view>
+      <TabBar />
+    </div>
   </VanConfigProvider>
 </template>
 
 <style scoped>
 .app-wrapper {
   width: 100%;
-  position: relative;
+  flex-grow: 1;
   padding: 0px;
 }
 </style>

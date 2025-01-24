@@ -88,7 +88,7 @@ onActivated(() => {
   <div>
     <van-swipe :autoplay="3000" lazy-render>
       <van-swipe-item v-for="image in bannerList" :key="image">
-        <img :src="image.imagePath" height="200">
+        <img :src="image.imagePath" height="200" width="100%" fit="cover">
       </van-swipe-item>
     </van-swipe>
     <van-grid>

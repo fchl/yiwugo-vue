@@ -33,6 +33,9 @@
   },
   "layouts": {
     "home": "首页",
+    "video": "视频",
+    "ground": "广场",
+    "message": "消息",
     "profile": "我的"
   },
   "profile": {

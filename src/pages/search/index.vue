@@ -130,7 +130,7 @@ loadImage('i004/2022/07/17/81/84be66a989fcba4e6eacb19274d08c4c.jpg')
           <van-image
             v-if="getRealYwgImage(item.picture1).indexOf('img1') > 0"
             class="bg-green"
-            :src="loadImage(getRealYwgImage(item.picture1))"
+            :src="getRealYwgImage(item.picture1)"
             :width="widthImage"
             :height="widthImage"
           />

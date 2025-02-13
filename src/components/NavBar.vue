@@ -42,5 +42,14 @@ const showLeftArrow = computed(() => route.name && routeWhiteList.includes(route
     :left-arrow="!showLeftArrow"
     z-index="100"
     @click-left="onBack"
-  />
+  >
+    <template #right />
+  </VanNavBar>
 </template>
+
+<style scoped>
+.van-nav-bar {
+  --van-nav-bar-height: 40px;
+  --van-nav-bar-background: red;
+}
+</style>

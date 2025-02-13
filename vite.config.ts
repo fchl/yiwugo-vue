@@ -53,6 +53,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '~@': path.join(__dirname, './src'),
+        '@public': path.join(__dirname, './public'),
         '@': path.join(__dirname, './src'),
         '~': path.join(__dirname, './src/assets'),
         '~root': path.join(__dirname, '.'),
